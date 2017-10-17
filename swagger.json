@@ -1,0 +1,948 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Barcode images are ingested into Kofax (via DIS) and retreived.\n\n<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAG2CAIAAAAoYcIoAABI3klEQVR42u2dD1gU1733bTcWuUgJfaiv18tLLW2acAmP8abXYDRKCU8IIZT4r5dQoymxRqIGiRKs+qrxUkJqlRpKDUnEFci6LKwICIgIIuKKiMEElYAhEv4FgYuXEIIEie9vOXo67g7LArvL7vL9PPPwnJ09c2bY/c1nf3PmzMykOwAAAMySSfgIAAAAggYAAABBAwAABK1Bf/e3LXmq6t0pVTvep78NaYU0B58yAACMp6Bvtd+s2vGP9KkL5JPmCKf0qQsvbdpH7+KzBgCAcRD0jVMVWc5+zMi5j/z24ro3q3bsurRp6/HHlqQ+4EkzM5yeocwaHzcAAJhU0GTn9KlPkYVJx50fZ37//cfC6X+v5hZ4/he9m/rA3ObsM/jEAQDARIK+1X7z6PRnyL8fb9g88F2Fhp35RO9SHeVPfJqv1HZ1dd26dQsfPQAAGFfQn277O8ud+78tH8rObDrx62VU88SKrbW1tc3NzdA0AAAYUdD93d+ys4LaPRva0/9ezZVLPFNt5xfnHK+srLx+/Xp7ezscDQAARhF0c/YZsnPeo4uGtTObjv/HUvW4joi3CwsLmaMpj8Z3AAAAhhd09e4UEu7FdW/qKehLm7ZS/Y9efEOpVDJHNzc3I4kGAADDC7pqx/sk3Kodu/QUNNWk+smBryUnJ2dkZJw+fbq2thZJNAAAjH8GfSHsTyyDPnjwoEwmy83NpSS6vb0dXwMAABhY0CPtg872WEz1ZWFvkaBZEq1SqZqbm/E1AACAgQU9OIpjoZ6jOG5eUY/ikE+ZJz8gJUEnJSUplcrTp09fv34dXwMAABhY0HfU46DfY+OgdVylcjd9fkw9hCM14LXU1FSpVHro0CGFQlFYWFhbW4uvAQAADC/owSsJ/Ya9kvDMHzep79RhvzA1IRGCBgAAUwj6jvpeHBdZR4fovThuXsllubP6KpXIt8nOcrkcXRwAAGAKQd91tOPT7G52Of/+QunSNYULl59ZGprtsTj1R0/ezZ0H7UzIZDKcJAQAABMJmmipqSv441uptvM17gctnzJP3e882LPB0mdSM4bZAQCA6QTd1dVVW1tbfLxAuXW37FF1nwb9lYW9JT8g5WomKTM740IVAAAwnaBv3brV3NxMGXFhYaHid+HsisGDg0gHOXgPsjMu9QYAANMJmiXR169fJ+1mrVBfMXh4yevk4oSEhPcGocL7779PSTTlzrhZEgAAmFTQlAu3t7eTdgteVd9zI+P3b5KLKWX+cBAqHDp0KDc39/Tp07jdKAAAmFTQzNGUFKve2EOCJk2rVKr09HT5IFQ4evQoqRk37AcAgHEQNOPStv0k6PMRfyMRU75cOAgVzp07R1kz1AwAsA5utd/85npL+5lLN05dpKn7WmNP441xEzRtQdWO94ed+Bg7Kp9aGy2ctCtTm/iaAQAWoeOWvJJPNu8teX5tlrNf6gOemqOK701Hp/sWeb1yaVNsU0YxLWUiQQvla6iJ2sQXDwAwW7672VUTKz05f0XalHnMWrmP/Pbs0jWfbN7+2d6/1iX+vTk3ubVI/tWJj64n7a95d++n23bSu8cfW8INXuC5snp38ihMjQwaAACGSpn/5+MNf2Zezp7pd2HNpi8VH37bUqznDZb7OkvJ3RfXvUnLqm8V98DcC2veHlEfiFH6oO89aUWdGl+9H3zlAACLoCEtJ8PpacqCVUGvNWUdGvaGnbonSrGpHWotze6pqn+k6nkqbvSCphW0tbU1NjbW1dVpWJgyZRI0/aXysfu5OgTUCDVFDeIUIgBg3Plk826Sacnzr3xdmz8WL2tM1NrZpWtIj8WvRukzmA2CBgCA+/hsbwIZ7NNtO8eYNQ81UcvUfmH4X4a9HASCBgAAgdmqr1Hu/PGGzcZQM58qN24lSZamHKmtrdXhaAgaAAD+iSroDeWDXn2dpUYVNOXmR1z80ueuUKlUOhwNQQMAwF2+779Ndv50206j2plNH297Sz5lXmb6ER2OxigOAAC4S2N6Ibnr8/f2mUDQDWkfqocjb4nJzc0tLy8XvXkcBA0AAHcpW/kWuatsZZgJBP3Z3r/SulJ+v5E9nfXy5cvaTy+BoAEA4C7V7ySRuz7ZssMEgr4SE6O+b/5Lm1JSUrKysiiJ1n7+HwQNAAB3aT15gdx1bvnrJhD0+ZANtK5DG/9bxxO0IWgwPOwSfwNelN99rbEhrbAm9jA1S3/rk3NvVtbgcwbmEOrkrvSpC0wwiiPL5VlaV9Lm6EOHDrFejtraWggajOkLHQvf3fyaGsl9ZKnobbOyZwZ8uu29sdz6CwCDCDpVYvRx0Jc2bWVhD0EDsxD05/vTs5yfY0GpfNDr9LN/+GTz9qodu9itvzKcvO+95V0TK/u+/zY+djBegq5Y+ya7ktBIdqawp/bL10RA0GD8Bd3f/e3ZpZHMv0Vey7868ZHoFbStRXJ6l1UreT4cqTQYL0FTKFL2MBiHxroXB2XQtBYIGhj4C+26H33sfMpnLS2e5ezblHVo2Ahuzk0+9kt/qn/cc2X7Fw24agmMi6ApFL9UfEiHeuxudhSWY1RzW0na+Zc3UGvpU5+6nrSfZSQQNDDwF9p2P8Muqwrayu6lq38m8k1DIbt/7nHvV/H4SjBegqapt63k4w2b2X33KSYvrnuz8UjiSO8HTckyyzmonfJVb1B480PG8RH0+ZfVPSxnl26GoK1P0I33o3vBz/crWe480uNECmIW00Wb/ooHwIPxEjT37NW/vHNy/ov8CSl5jy7S/UQVSrqPP7YkbcqTrP6JXy+jFjTMPj6C/r7/Nj8vT4e3ELSVCbrufnQs9d3Nr7Oc1ZLVp2dDtK9DnXRMXXgu76TuO34BYFRB84kSagpm8vLpZ/9AaYeOJ/llOHkXeS2n7FtHxj0+gmaHtGw6/WzY1arLELQ1CVr/X1y2FIXpqLvt2DnDjBcjdN/xCwDTCFp7Ivl2f1HQVpJGi9BER4p08KfnXaTHQdBsn1Q++HRDWmGG0zPq/fOPuyDoiSno3Ed+R0vRcd9YnhKk/qX/qU9WxlE4GpihoMf4ECyTCpp1OKZNmd9xropefnX2UprdAnX/S8Ru1SAXLlzA3jVBBN1VfZ2Ndx7jMynY+GhZVKyOO34BAEEPQ31ybuoDc2l9Xx4+QS9JxLQjXT6QIZeou9Xztuw5e/YsCRpn5CeIoCkMBvu4/jDGIGaDRpNX/0kul+fn51dWVjY3NyOEAAQ9Am5W1qRPXUgru/LfB7id2e38T2zeoz7VYzv/1AE5CRq35LdEirzWsJMK5OhTa6OFE80RnYp9X1ffFWzzdoM8vS35xXB+QxkKYiTRAILWl57GG0en+w1eG7Pv7uGt4GErKpUqO1h9FVnag96qI7n8sSkIBQtCx9lq3VPVjl0GuSj2o0XrDh48KJPJcnNzKYnWvm0uABC0CLd7+wo8Q9iADXb/BMqOhY/COjtI5oJXqM6RX7xwreoqczSSaGTQ+mfQh1+KIEEnJydnZGTQT772bXMBgKA1ISOXPP+G+oqvx5Z/d/Nr3rkhfFBh9SBXLn16bO4fqCb9vXb1M6qAjg4LYtz7oOVrt5Ogddw2FwAIWpNPNscPXif2fO9XHXcEXc/czuxRsE2D1H927ch09f1PjwdsqKu9hs5oCxV0eXl5aWnpqVOnTpw4oeMpwB8fO2nAURypb78rlUp1xDEAEPR9XH1bOnh1+Vx2H3fhiUHtB3Wzt6pzihU289SDo9dE4Rne1i1o4qjrC4YaB50qOwxBAwhaX/igOipo2Jmlz0I73xqEVaiSHWMD787/JRGOtm5Bn1obTUsVLhz9lYS0rFrQi19PTU2FoAEErRf/c+EqG1RXE3tYHzuzpXi1i3vVj2UkTX+SmgtHW7GgL5+vSHd8eoz34pDbLZD/40MIGkDQetF9rZFdw31x3W797azh6DOvRlELCnuvy3nFcLS1Cpoo3aE+S3F0xjOjuJtdlqv68SupKyPJznK5HCcJgQnoOFc16pRipFPdkYNqQf+/dwwm6O9ufn3i1yvZoLrbvX137h/yzPZJ3cLlji5aph4cffShxTUVlzA42oIEPdLbE555Qf1cn6yfjex+0Fk/U59Plv9HUKrsMAlaJpNhmB0wAd/331Y++BvjPexKOBW/vlU+ZZ70gwMGE3T5qj/TbnNy/h+ZnTWGPLP0edh0mDn6RstXufNeuTuo417SjSTa+gTd3/3tiYWvsjxazyeqZP588NGFjyxK/VDK0mdSMy5UAaZBFfQn5YNexn6q9+2+CoWzn/w/g3X33Y04gz7/8q6exht3xIY8M8/q01nBlq2/8lnBCxs/LTk3omWBZQma6Gy5kf/sOnapS8FTwTqeSXhywe/vXoVIufM9O6ekpAj7N3CpNzAqXdXXUx+Ya+ynep98WX0FSeo7cYYU9H3/htiQZ/2z4NFl38ASBU1faHNzc/HWfamOdx/dnfbjhSefXnkp8u5TvU+/sFr5k9/cVbPdAvnyCNazwewsHQQ3SwImoyb2sPo62K3G6ugoeu1P6lBfHjHsyRUDCJoxin5kYf81A4K2SkGz75qCr6ywOOPFCPmMZ8Xv3fFTH/ni19mYDaGdeecGbjcKTAa7Cu+Un4Gf6t1xOffoQvVpvNSA1/jRIf3Nysqi8NY+uTJWQfNn043CrcIRIKNuBJiAG6cukp3ZFUmjEzR9p+3t7XQEp1KpKBZlf/17cui25BfDP1q07vBLEfK121PffpdlzUzNZGTW70yCpjItghv2AxNzdq80depCucSzZOmasT/Vu+mkPO+3a9RXgUyZl7puB88/eP/G5cuXtU+ujFXQnNGJlTt6jO0AkzHqh0wKHU3pMAUoHdkdvIdUAJ9JFagaVYadgemhw7VzJ4qOvPA6u7buyL89U/bqppE+1fv6UWnxqk3pzs+yiz/k3q/QMaL+R4djErSQUe85zNEGaQqYAP0fGqvD0RSO+fn5SqWSZcok4kMC6CXNpLeoAlWjyrAzMD3/POY7rJAFb5T9KvDwD5+4+0zYXwYUPLeqLGzLpzHv1H4Qx57q3ZCT/NkHcZUx75S+vuX4c6uO/Cow9Udz73bfuQaoz6wkJI706HD0gr51P2P5IG5pgeAwWxrvZxTfNQUiJQuVlZWnT5+m3CEjI4NErBBAL2kmvUUVqBpVhp2B6RE55otPSNqwM8V/jcxjqfwn3rpuhm6/UP7vi+XPrUnd9Gf5ewdIxJQyk5f5AaKeR4eT8DWAEdF2P6M+Zmpubqa4JP9SgJKICwXQS5pJb1EFqoaDKjDujtY45qPjvLtdc3+Ll+5+N2nL20mbo9UXbb+zT7r379IDiaJddgQtOKKjQwgajAyN/qixhD4tTqFJCqYcuVYAvaSZ9BbUDMzE0RrHfHScx5NijQ46bViXHVWmRWjBER0dQtBgxPGKzigw0WJe45iPjvNIsllZWdoddNqwLjuqTIvQgiM6OhxPQVdVVeG7BwBYkKbZMR8zdXl5uXYHnTasy44qcy/rf3Q4jKA7OjrCw8OnTZs2efJkd3d3StH/ueSkSRqFkWJjY4Nv3WooKiqiSCgoKLgvvO4hkUhsbW2XLVvGu61HHTYAmJJJ90MmzMvL47L+4Q9/yDroLl26FBISQqqkOP/5z3/+xhtvGKTLTtdO0t3d/fjjjycmJvb1qW+NRL8AM2fOlEqlhtrBsItaE4sWLYqIiAgMDBzqKx4YGKBjvaCgIHz7wLIELXxJdiYF01+Nd4ODg5OSkijIqUzCjBzEAGvX8d727dv37NkjnEOOJmXryKB37drl4OBgZ2dHebfwPyTLu7i4UBrFfn80fpcQBJZOS0uLs7MzFegnvLW1VcdvMD9swvcOLFHQzNHkMY13+Rye3To6OhpX0G5ubg0NDcNuNy/s37+fREy/If39/TKZLCYmhlcICAhoamoa6n8Dlk5UVNSWLVuosG3bNvqRHiq4KTboxxvfPrBoQYvaj2xJxmOdDYZcu473NH4Tht3E2bNnswyf4erqyiswO+tIvYFFQ4dH7KrC+vp6SqKH6uKIi4tbu3Ytvn1gfYKuqKgg45Ez/f39ExISSkpKjC5oW1vbEQmaNk7YcSGRSET/QwjaysjPz/fy8uIvvb29+alCYTzQEV9oaCgd+uHbB9YnaEZZWVlsbGxAQADJcPfu3cYV9KxZszQuFevv78/IyBhqE7mRdf+HELSVQeGocaab5gz7FePbB9YnaE5VVRXvQjCWoHfu3JmYmCick5SU9OSTTw61iR4eHqKXlkHQVkxTU5OLi4uwa4vKNIedKoSggfUJWvREGh0gCvcCgp9uMZagOzs73d3d4+Pje3p62Bgp2gjet6Lt2T179kRHRw8MQmV+2DuUoG1tbWn3Nni3OjAl9CuuMdSHoIM7dqoQggZWJuicnBwSF/3VeDcyMpJ2BDaqore3d9++fevXrzeuoAla3/Lly+mnQCKRPP7440VFRboT4W3bttnb29vY2NBBbktLi25Bx8TE2AyCILBcZs2aReGoMZN+0elwCoIG1iFo7QtVRMOYkpKHHnqIVOnk5ES+NkjqiZ0EAADM9ecBHwEAAEwsQbMHjAKAYAAIcrMTtHzSHHxnAMEAEOQQNICgAYCgsU8CBAMAEDRA7AIAQRsFnBcCCAaAIDdTQQMAAICgAQAAggYAAABBAwAAwElCYHQQDABBbl6CxsgqgGAACHIIGkDQAEDQ2CcBggEACBogdgFAkOMkITA6CAaAIDcvQQMAAICgAQAAgjbI+u4hkUhsbW2XLVvW1tbG321qaqI5NN/Ozi44OLi1tZW/1d3dHRYW5uTkNHnyZFdXV/bQ6Dtaj3Rk6N6Guro6Nze3O6Z9bimekQoAsABB8/LAwIBSqQwKCmIvOzs7Q0JCampqqNzf35+fn//yyy/TTPYu+TohIYHmU7mvry9ykNEZcN++fWxZCBoAMBEFPVSXubanbGxsWIGkWVJSovFudHQ0K1DiLJxPCbWjo+PoDOjt7V1aWgpBmwycJAQIcvMS9FCDTjQ8RUm0nZ0dK7u7u7MEWcjjjz/OCm5ublFRUfobcCgh9vb2crNTnWvXrs2aNYuUzXtaysrKZs+eTb8H06ZNS0pK4jXj4+NdXV1Zph8YGGhra/vwww+rVCpWgRb38fGhpaipjo4OPpNe0j+YkpLCt4cW9/Pzo5q+vr78+MC6wTA7gCC3PEGTnePi4tauXSuaIzPIg6xQUVFBfnR2dg4LC8vMzCwvLx9diiqXy5cvX84XCQ0Npc0gz65evZr/EhQVFVFBqVQ6ODjwmrQgyZ3KtEhBQQEVsrOzWV82QYtLpVIq5OTkrFq1is2kmrGxsdQ+bTPfPJrZ1NREBZlMRvMRuwAgyM1I0BzKZMlW3d3dOgTNO0B4ekvKCwgIoMqUlo5C0GRnhULBF+HZrkaHiUabVCDPsrKTkxMvc2hxNpP+cq1TDs7+u66uLt4ULc5z+enTpyN2AUCQm2kXhxDKRjW6OPr6+jw8PMR7fKqqKJsehaDJpCwR1liE/zyQsqOiooKCgmh7hILmNSUSie7/izcl/MkRNiUcyoLYBQBBbmpB63+SkLN9+3Z27o5DL7dt28bK9vb2Gnkr77zWX9DFxcW+vr7CRXp6eljayxPbOXPm7Ny5MzMzs76+XlTQork2Zc3s14Waok1lMylBZr3MlEfzFnh+PXHASUKAIDcvQQ+5vqE1yobZVVdXs5dUCA0N5V0Qq1ev3rNnT0NDA+sc2Ldv3/r160cq6MjISFpQuEhERAQVSkpKeHewra1tTU0NJe/CjmNh47RV7IekqKiI90HTlrMzinl5ebwPmlpgo1BoLcI+aPZfyOVyT09PRDYAwAIETbS2tgYHB9sMsmLFipaWFv5WW1ubv78/Zc0SiYSyXVItOVRHy6IrIp/W1dUJ65BPnZ2d/fz8urq62EzKnaka5blxcXGigqYfEtYJ7u7uXlFRwTfP29ubZvr4+PAfFTZgw8XFRaFQ8BboXcriqaaHhwf/NbJQehpv1H1wtPerDuxIAFiDoIGV0ZKnkk+akz514Y1TF/FpAABBA/OiOuYQOZqmbNdF1btTbrXfxGcCgFkLGueFJhSfv6eU/+AJxeQnc91+l/YvT6mCtgoTagQDsHrwTEJgAY6+m0r/LDDzX5/jCTWCAVg9ljcOGtMEnxQ/epKXsQMDCBoZNBg3mjJOpUrm3lXzA08qH3w6c8ZzV/6ciAwaQNAQNDALOx9x9Emzfark+TdaC85/338bwQAgaHMUNM4LTRy+OJDJEmeeMiMYwEQDzyQE5ggbB51mM0+YMgMAIGgwzvQ03qjenfLN9RZ8FABA0AAAAEEDAACwVkHjvBBAMAAEuZkKGiOrAIIBIMghaABBAwBBY58ECAYAIGiA2AUAQY6ThMDoIBgAgty8BA0AAACCBgAACBoAg8ffpEmWuC7+XGBz+x+NsYUm+GfHuAHj8glD0ACCNtN1TZs2zcw/2BFtoe5PxgT/7Bg3AIIeMTgvBPQJBgsVtPkbYURbqLuyCf7ZMW6AOXwduJIQWCo6goF2rWvXrs2aNcvb27utrY3NLCsrmz179uTJkyl1SkpK4jXj4+NdXV2p3NnZGRgYaGtr+/DDD6tUKlaBFvfx8aGlqCl+UEwz6aWdnV1KSgrfjWlxPz8/qunr60tl3Rufk5NDNSUSiYeHR3FxMdsSho71CreW16RCQkLCzJkzqXJeXh4/fvfy8nJycqL6oqKhmfv373dwcHB0dMzIyCgoKHB2dha2oP3vaGyh6Ocp+slo19SnKVFXiv6zQgy4AfpHkfa3OdJ4MLHxIGgwzoIODQ0dGBggz65evZrNdHNzKyoqooJSqSQx8Zpyuby3t5fKtAh5igrZ2dlUmVWgxaVSKdsJV61axWZSzdjYWGo/LCyM7+Q0s6mpiQoymYzm69542m/Z7p2fn8+Eq5Gyia5XuLVCZ0VGRtLGkLCoWTZz/fr1ZCiaSYWhBE1v9ff307/s6ekZHR2t0YLovyNsSvTzFP1khvrkdTc1lKC1/1khBtwA/aNI9NscUTxA0GBiCZpnnZQh6t7haQ9kZco3eZlDi7OZ9JfvkJQ9dXd3U6Grq4s3RYuzAgl0+vTpujfe398/ODiY9mdSpOgxteh6hVsr/Bd4I3wmbQCrSbnbUIJm/8JQLYj+O0Md9fP5op/MUJ+8/h0Luv9ZIQbcAP2jSPTbHFE8QNBgYglamKvyo/6oqKigoCBKgkT3UjpE1bMpYe4mbIoj2pQQ2hjWg2Fvb19ZWam9LtH1ilYQnSm6hUP9X0M1q/3vCGuKfp6i6x32kxetMKxVRWsacAP0j6Khvk3948FKBI2ThECfYKBdoqenh6WfPJGZM2fOzp07MzMz6+vrRXdC0SyJsleWFlFTtPvx/JT1KlKyxlsQPTbXDbWZmJg4Y8YM7Y0RXa/+gqZEsq+vT2MLRyRo3V0NQ32eop/MsJ+8aIXRCdqAG6B/FIl+m6OIB5MZD8PswHhCe05ERAQVSkpKePefra1tTU0NaUvYOyncx0JDQ0tLS6lQVFTE+6BDQkJY92JeXh7vC6YWoqOjqUBrEfZBNzQ0qLMeudzT01P3FlL7OTk5rFlhYs67HUTXq7+gaQtjY2OpEB4ePjpBi/47wi0U/TxFPxnRmsM2NTpBG3AD9I8i0W9zRPFg6h0EjgDjK2jaVZydnf38/Lq6uthMynpoR6K8Ji4uTnSHp8wrICCAdjB3d/eKigo2k40KoJl0DMt7JNkJehcXF4VCITzO9fX1pZoeHh7V1dW6PVJWVkZroSNfqs/2bWLJkiU2NjY61qu/oGkLaXHK5mgLRU+mDSto0X9HuIWin6foJyNac9imRidoA26A/lEk+m0OFQ93Bp+6WffB0d6vOiBoAMYZnv+OC5Tr8R4SYD6w59anT11449RFCBqAcWP79u2mXymleKWlpQMDA1u2bFm2bBm+BTOkcuM+cjRNx365uHp3yq32mxYvaJwkBAgGfVAqlTNnzqRDeB8fn5aWFnwg5knZSzvkP3gi79Ggkuc3UjatCtqqkVDjSkJgqSAYgJU4ejCPznv0xbPL/pTzq2XChBrjoIEFCxoTJiubKI/On/0SKzekFULQABk0AONGa8F5xZSnuKBTf+iZ/mOvitB3kEEDCBoAc7FzqmRu/mPLmzJOfd9/29hBjpOEwOggGIBF8+XhE3e7NQQps2mCHMPsAABgSNg4aMXkuRops2mAoAEAQJyexhvVu1O+uT5uwx8haAAAMFMgaAAAmGCCxnkhgGAACHIzFTRGVgEEA0CQQ9AAggYAgsY+CRAMAEDQALELAIIcJwmB0UEwAAS5eQkaAAAABA0AABA0AAAACBoAAABOEgKjg2AACHLzEjRGVgEEA0CQQ9DAamN30qRJ8fHxrq6uVO7s7PTz85s8ebKvry+VWYWcnByaI5FIPDw8iouL+VIymczW1tbLy6utrY3NpIKPjw9V9vb27ujo4DUTEhJmzpxJ8/Py8nS0Kbp2ACBoMKEFLZfLe3t7qRwaGtrU1EQFkm9YWBirQMZMSkqiQn5+PvM4WyokJGRgYEAqldJSbObq1avpJfPvqlWreM3IyEiqSXampnS0Kbp2ACBoMKEFTfZkZScnJ1YgX0+fPp2V/f39g4ODyaT9/f3CpVpa1HdY7+vrc3BwYDMdHR1ZU/SXz6SafEEq62hTdO0AWKqgcV4IjD0YuDRZmSORSNjMjo4O1nFhb29fWVmpvRTPi4edyctDtam9dgCMbTwMswPmi1CgPO3VhpLixMTEGTNm8KW6urpYBj1t2jS+OMuIqTKZV4egRdvUsXYAjLgL4CMAFiHo0NDQhoYG9bGkXO7p6clmurm55eTkUEHYiUxLbdy4kQpSqTQ8PJzNDAkJYT3LVFPYB629LtE2RdcOAAQNJgS32m/WJ+dqPNBeKNCOjg5fX18ypoeHR3V1NZtZVlbm7u4ukUhoPrPqnXtjM2xsbAIDA1kqfWdwFIe3tzdV8/HxEY7i0F6XaJuiawcAggZWTuuJ80en+conzWnJUxk87wYAghYBJwmB7mCgZLnyjb8dcfQhNdP0xcFsY3SMADCOQW6+gsYwOzBUMFDKfHLuK6mSuTT/6P95Nt1uQXP2GQOuzsbGBp85GN8gh6CBhcUuT5lTJZ4saz72i0VKB2/D2hkACBqCBiMLhpY8FZOyxnRhTQwdG1KBHSGijLIlliFoYA0ZdPXulMx/fS5tynxm5/SpC9PtvZBBA2TQphY0ThKCoYLhxqmLZwIjFJOfVNjMU0x5Co4G1hfk5i5oAHTDE2qDj+IAwGqAoME4Qwk107ShxkEDAEEDYOCEujZO0dN4Ax8FABA0AABMVEHjJCFAMAAEuZkKGsPsAIIBIMghaABBAwBBY58ECAYAIGiA2AUAQY6ThMDoIBgAgty8BA0AAACCBgAACBoAAMAEF3RRUdGkSZMKCgqG3GixZxrxmZME2Nra+vr6Xrt2zbgfos5nLGlsj5+fX2trKyIPADBugh5Ll/miRYvCw8MDAwNHLWg+s6+vLyoqyt3dfXwFzcsDAwMxMTHBwcETKshwkhAgyM1L0KMedNLS0uLs7EwimzFjxlCZpv6CZlDeaiaCZo429vaYGxhmBxDkViJoSni3bNlCBfq7a9cuPr+trc3b29vOzi4lJYUrT3SmRsYaHR29Z88e9rKsrGz27NmTJ0+eNm1aUlISrx8fH+/q6krlzs5OytxJoA8//LBKpeJr8fHxoaVoXR0dHTpWTYv7+flRTV9fXyoPJWhaipVzcnKoskQi8fDwKC4uRuwCgCA3a0G7uLjU1dVR4dq1azNnzuTzQ0NDY2NjyW5hYWFceaIzJ2nBXezm5lZUVEQFpVLp4ODA68vl8t7eXtYg6/vOzs6myqzC6tWrpVIp8+mqVat0b09TUxMVZDIZzdcWdHd3d0xMzIoVK9hLsjPbtvz8fPYLgdgFAEFupoImT3l5efGXlKLyU4WU85LdqNDV1cWVJzpTI4OmDJfSYd1dIlSNlZ2cnHiZ4+joyGbSX6510VXT4qxAup8+fbr2DwYZefny5Ty59vf3Dw4Opv+6v78fsQsAgtxEgh5dl3lAQIBG8ktzeLKp7VbRmdo9wjY2NqzQ0dERFRUVFBRE2bFofYlEokPlwjUOtWoOb4q/Swm4h4cH0zrfHtZ5Ym9vX1lZaa2xi5OEwOqx/isJm5qaXFxchAkslWkOO1VICSlLPElwXHmiMzUETckpT2znzJmzc+fOzMzM+vp60fqULGtvGGXNLMOl7SGT6lg1z6+H8ntiYiL9PGhUoGZp/owZMxDlAAAzFTSpk5/N4+zevZudKgwLC4uOjqZCREQEV57oTKEQe3t7t2zZQu+yl7a2tjU1NX19fRp91rx+aGhoaWnpncGx2LwPOiQkhPUU5+Xl8T5o0VXT4g0NDerjHbnc09NT9AeDUmb6hWBlWgWl1axlYUoOAADjKehb7Tfrk3PpL58za9YsdqZOSE9Pj4eHx517AyQooVYoFBqjJjRmCvsZKCNev349b5bMSE6kPDcuLk5U0NRgQEAAudLd3b2iooLNZAM2aCa5lY/iEF01vevr60s1aZurq6tFBU0Gp3fpR+LO4KgSWpFEIqFFmKkBAGA8Bd1+5hKe4gwAAOMmaO0uc0qWq3enZDk/T2qm6YuD2fj0Jwg4SQgQ5OYlaOGgE0qZzwRGKGzmp02Zr5jyVNq/PNWcfQbf6MQBw+wAgtzsBM1TZjKy/IdP0Jz0qQvT7b1gZ8QuAAjycRa06HRhTQwdC1CBHRGgPBHKEDSAoM0xg/54w94jDt4sfabp2C8WKR28kUEjdgFAkI+noIVd5i25qoInQlIHNZ3xf/zg6IkGThICBLl5CVqbfybUGMUBAABmJWhhQn30p74YBw0AAGYnaJ5Q18Ypehpv4DsAAADzEjQAAIDxETTOCwEEA0CQm6mgMbIKIBgAghyCBhA0ABA09kmAYAAAggaIXQAQ5DhJCIwOggEgyM1L0AAAACBoAACAoAEAAEDQAAAAxuEkYU5OzuTJk9lTt21tbYuLi/+5NWLomK+Duro6Nze3O1oP1Tbup6n3VimVSvoQ9FzKZFso+i6fSRuckZFh2GAAwDqwkisJ8/LySMr0l72kHd7e3l6lUumpKv1dtm/fvsjISHMTNN8qZ2fn1tZWyxJ0Z2enr6+vAYMBAKvBSsZBUxZGGbRwDjn6oYceMrigvb29S0tLzU3QoltlKYIm6McVggbAagUtqoCBgYHRCXqo+r29vY6OjrzOtWvXZs2aRXJsa2tjM8vKymbPnk2/FtOmTUtKSuI14+PjXV1dWbYYGBhIPnr44Yd5gk+L+/j40FLUVEdHB59JL+3s7FJSUoTJpp+fH9WklJPK2ltlY2Mj/C/MZAv5u6KLjPq3BIIGELQFC1r4ru6+Zj0FIZfLly9fzhcJDQ2l3wCy2OrVq9lMNze3oqKiO4N9wQ4ODrwmLUgapTItUlBQQIXs7GzWa0zQ4lKp9M5gN/qqVavYTKoZGxtL7YeFhfHNo5lNTU1UkMlkNF9jq6iyMBU1ny0Uvqu9CMug+a8pBA2ApQp6qC5zjXRMw8KG6uIgDyoUCr4IzyV5AivaJhW4fZycnLRNRIuzmfSXS5My3O7ubip0dXXxpmhxnjVPnz5dY6vy8/OXLFki3AAz2UL+rugixKJFi/j5g7EHAwBWg5VcSai7l9NQgiZPsTRTYxE+cIKEGBUVFRQURLmn6NolEonutfOmeEHjH+HwpvhW2dnZXblyRXez47KFwgEbom1WVVXZ29tjbwTARMI08fpoz9dIweil/gPO9BF0cXGxcLABLdLT08OSSp42zpkzZ+fOnZmZmfX19aL6E81kKSft7+9nTXFPUfrJ+nAp5eQt8OxVdKsogw4MDDS3LRS2L7oI4efnN4oMGgBgGYLWGGaXk5NDL/m4DoMIOjIyct++fcJFIiIiqFBSUsI7W2mlNTU1fX19wj5WYeOhoaFsuEVRURHv4Q0JCWHn62j7eQ8vtRAdHU0FWouwD7ehoeHOYL+zp6enxlZp90GbwxYK2xddhKXto+iDBgBYhqB5yswOrjUS6pGeJBT1Ndmqrq5OWIdW4ezsTNlfV1cXm0mZKVWjLDIuLk5Uf5Q/BgQE0Oa5u7tXVFSwmWxsA8308fHhvcZsOISLi4tCoeAt0LuUL1NNDw+P6upq7a0SdlCYyRbeuX/Is/Yi2h94T+ONug+O9n7VgR0JAEsSNM4L6UY4zM6SwkXrF7ElTyWfNEdhM68lV4VgABMWPJPQqliwYAEf8mwptLa2zpgxQ3v+l4dP0NdNU/qPvS6G7b3VfhPBACYaeKKKVZGUlGRxSTRtcEpKiri7C84rpjzFNJ36wydO/HqlMKFGMAAIGoIG45pfCxw9qGlPnlAjGAAEbXaCxjSRp/SpC/Nnv8RfYgcGELQZCRrnhSYaZS/tYC7Oe/TF0sWRuW7/deyXi6++LaUMGsEArB48kxCYt51/8MRxj+AS/3Dlg0+fXbq5teD89/238ckAAEGD8aRy4z6WO/OUGZ8JABA0GH/YOOi0KfORMgMAQQMzoqfxRvXulG+ut+CjAMCSBI3zQgDBABDkZipojKwCCAaAIIegAQQNAASNfRIgGACAoAFiFwAEOU4SAqODYAAIcvMSNAAAAAgaAAAgaAAAABA0AAAAnCQERsfcgoE/TlfXjqHz+fH6tAAQ5OYraIysAmYbDNOmTRujoPVpASDIIWgAQY886CdNGmMdfVoACHIIGlh27JLp4uPjXV1dqdzZ2enn5zd58mRfX18qswptbW0LFixwcnJKSkriWhT6kZdFF8/JyaE5EonEw8OjuLiY1Wdobwyty9vb287OLiUlhVcoKyubPXs2NUJZM22DdgvaFQCCHIIGViJouVze29tL5dDQ0KamJirIZLKwsDBWISQkhCQ7MDBABd2CFl2cvMmkmZ+fz34GdOS/1EJsbCytixbnddzc3IqKiqigVCodHBy0WxCtABDkZi1onCQE+gQDmY6EyMqUJrMC+Xr69Oms7OjoyCq0tLToFrTo4v7+/sHBwWTn/v7+YTsoKAXu7u6mQldXl2gd0Q1A1we4gysJgVWioVqORCJhM3lhKD8KZ2ov3tHR4ePjQ3m0vb19ZWWlbo1SNe1mqYWoqKigoCDKlEU3QLQCABA0sCpBi/YPUC7MMmhhVssLfX19vKyje4FaSExMnDFjhm5B07pY5zXl0bzOnDlzdu7cmZmZWV9fLypo0QoAQNDAqgQdGhra0NBABblc7unpyWZu3LhRqVRSITw8nFemVDcvL4+0K5wpujhltTk5OVSg+jxBpgLrytAgLCwsOjqaChEREbxZW1vbmpoa+iUQdkwLWxCtAAAEDaxK0B0dHb6+vuQ+Dw+P6upqNpM8uGjRIhsbmz179vDKzLb29vYffvihsC9Ce/GysjJ3d3eJRELzmamJJUuWUIPaG8PGgbi4uCgUCt4spcZkeUrP4+Li+ExhC6IVgHXQ03ij7oOjvV+N23VJOEkIjI6hggH6A6aHPbc+3W7BjVMXTW88DLMDRsdQwQBBg3HhiwOZFMM0ZTr7V+9OudV+02TGg6CBxQhatF8CABPQlHEqVTKXIvmIo4/CZl7pogiNhBqCBhNd0ACYg6NpUjzw5BEHb2FCDUEDCxY0JkzWNyl+9CQrNKQV4kpCYKkgGIAV8Pl7SvkPnmBGzvq/AZn/5p/98xeuvi1lGTSuJAQAgPG0s+JH83IeXpZu/5uzSze3Fpz/vv+2sdcLQQMAgC6qYw6xxFmYMpsGCBoAAIaEjYNOmzLfNCkzBA0AAHrR03ijenfKN9dbxmsDcJIQGB0EA0CQm5egMcwOIBgAghyCBhA0ABA09kmAYAAAggaIXQAQ5DhJCIwOggEgyM1L0AAAACBoAACAoAEAAEDQAAAAcJIQGB0EA0CQm5egMbIKIBgAghyCBhA0ABA09klg2mCYNGlSfHy8q6srlTs7O/38/CZPnuzr60tlViEnJ4fmSCQSDw+P4uJivpRMJrO1tfXy8mpra2MzqeDj40OVvb29Ozo6eM2EhISZM2fS/Ly8PB1tiq4dAAgaTGhBy+Xy3t5eKoeGhjY1NVGB5BsWFsYqkDGTkpKokJ+fzzzOlgoJCRkYGJBKpbQUm7l69Wp6yfy7atUqXjMyMpJqkp2pKR1tiq4dAEsVNM4LgbEHAwmU7MnKTk5OrEC+nj59Oiv7+/sHBweTSfv7+4VLtbSob+Db19fn4ODAZjo6OrKm6C+fSTX5glTW0abo2gEwtvEwzA6YL1yarMyRSCRsZkdHB+u4sLe3r6ys1F6K58XDzuTlodrUXjsARt8F8BEAixA0T3u1oaQ4MTFxxowZfKmuri6WQU+bNo0vzjJiqkzm1SFo0TZ1rB0ACBpMdEGHhoY2NDRQQS6Xe3p6splubm45OTlUEHYi01IbN26kglQqDQ8PZzNDQkJYzzLVFPZBa69LtE3RtQMAQYMJwa32m/XJuRrPSxYKtKOjw9fXl4zp4eFRXV3NZpaVlbm7u0skEprPrHrn3tgMGxubwMBAlkrfGRzF4e3tTdV8fHyEozi01yXapujaAbBUQeMkIdAzGNrPXMr6N3/5pDkteSqD590AmEOQm52gMcwO6A4GSpZrYg8fc11E79L0xcFsY3SMADCOQQ5BA8uLXUqZVUHb0myfUv74N6kPzE2znd+cfcaAq7OxscFnDiBoCBqMIBh4ypz+Yy/Fj56kmfQ3zW6hYe0MAAQNQYORBUNLnop1ZWhMF9bEVO14nwqsCw9llC2xfAdXEgLLhQVD71cdZSt2pv/LAm7ngv9cqXR4Ghk0sJogtxhBAzAU9SnH8x59Uf4DtaOP/WIxHA0ABA3MC42E2oCjOACAoAEwWEKd8dNnDDgOGgAIGgBDcqv9Zm2coqfxBj4KAIwuaJwkBAgGgCA3U0FjmB1AMAAEOQQNIGgAIGjskwDBAAAEDRC7ACDIcZIQGB0EA0CQm5egAQAAQNAAAABBAwAAgKABAADgJCEwOggGgCA3L0GPbtDJJAG2trZ+fn6tra066vPHM2u3M9bP5f4t8fX1vXbtmnF/KnVu80g/GbMCw+yA1TMhxkELJTUwMBATExMcHKyj/rRp00ygy76+vqioKHd39/EV9Ig+GQgaAAjaiIJmJqJscdRSM6wudW+JKQWtzycDQQMAQRtd0HZ2dqzc2dlJx/WTJ0/29fWlsvCony8bHx/v6uoqbEd7qYcffrihoYEKTU1NDz30kGgd7Yw1Ojp6z5497GVZWdns2bOpPuXvSUlJ2munRgIDA0mgtC6V6u49jtva2nx8fGgpb29v3jNDM+kl/Y8pKSk6tln3J5OTk0OVJRKJh4dHcXExBA0ABD0Mo+syF2qou7ubDuRXrFjBXoaGhpJSqSCTycLCwrTrU1kul/f29grnay8VHh6ekJBAhcTERDZnqJY14C52c3MrKiqiglKpdHBw0F47NVhQUECF7OxsqswqrF69WiqVMp+uWrWKb15sbCzZltarY5t1fzJkZ7Zt+fn57BfC3MBJQmD1TIgrCYVCJO8sX76cp5BOTk6sQBKcPn26qKDJdBrztZcidQYFBVGB/pIr9WmZmqUMl9JhHb8owrVTg7zMcXR0ZDPpL9c65eBkWyp0dXXp2Gbdn4y/v39wcDDZub+/H/sJANaE2QmaH7bTATuTl7ah6HBeVNCi3tRYivuRPMiMNmzLDBsbG1bo6OiIiooiv1N2LFwRr8kbGerggAyrUdC9zbo/Gdoe1nlib29fWVmJmAYAgjauoFkXBEt1GTzrHKq+aFl0qSVLloSFhVHiqWfLBKmcJ7Zz5szZuXNnZmZmfX29qKApWdZukNbCfg/oF4JMymZSgswSYRKu7m3W8cnwNJ/mz5gxAzENAARtdEETlBiSB1k5NDSUndyTy+Wenp48A+W5pKigRZdKSEigCrGxsTrqCFvr7e3dsmVLREQEe2lra1tTU9PX1yfsOBbWpwZLS0upUFRUxPugQ0JCWE9xXl4e74OmFqKjo6lAjeveZh2fDK2C9dVQy8KUHAAAQYszbJf5rfab9cm59FeHoMlTdDhPKmQH8r6+viQgmlNdXc1zYd7zICpo0aWampqoAn8pWkfYz0AZ8fr169kJQILMSE6kPDcuLk5U0JQUBwQEUIPu7u4VFRVsJhuwQTPJrXwUBxuw4eLiolAodG+zjk+mrKyMViSRSGgRZmpzAycJgdVjPVcS1r6ryHB6hiq05KnwvU4EMMwOIMjNXdBf19Sf+e0mhc18eoumLw5m40tF7AKAIB9nQVPKfOznL8h/8ATNPO4RnD51YXP2GXyjiF0AEOTjJmiNlJmm4mfWKx98GnZG7AKAIB9PQat+v517WThdWBNTteN9KrA+dZQnQrlw4RrswMC6sbwrCW+136yJPXzsF4uP/MRH6eDNBJ32LwuQQQMAwDgLmnPj1MXzK95KmzI/81/94GgAADAjQWsk1BjFAQAA5iVoYUKd5fw8xkEDAMD4CFqfKwlr4xQ9jTfwHVg9uJIQIMjNS9AYWQUQDABBDkEDCBoACBr7JEAwAABBA8QuAAhy83omIbBKEAwAQW5eggYAAABBAwAABA0AAACCBgAAgJOEwOggGACC3LwEjZFVAMEAEOQQNICgAYCgcVQLEAwAmDDIcZIQAADMFAgaAAAgaO2DgqoqfAEAADBKQXd0dISHh0+bNm3y5Mnu7u4ymeyfS06apFEYKTY2NvgCrIaioiKKhIKCgvvC6x4SicTW1nbZsmVtbW1jDBsATKrI+yET5uXlaWuwu7s7LCzMycmJKri6uu7atcvogqZVPv7444mJiX19ffSyvLx85syZUqnUUDsYdlFrYtGiRREREYGBgUN9xQMDA0qlMigoCN8+sCxBC1+SnSnV4I7m7wYHByclJVGQU5mEGTmIcQW9ffv2PXv2COeQo0nZOjJo+t1wcHCws7OjvFv4H5LlXVxcKI3ivz/CHyUEgaXT0tLi7OxMBfoJb21t1fEbzA+b8L0DSxQ0czR5TONdPodnt46OjsYVtJubW0NDw7DbzQv79+8nEdNvSH9/v0wmi4mJ4RUCAgKampqG+t+ApRMVFbVlyxYqbNu2TXhwp/EVU2zQjze+fWDRgha1H9mSjMc6Gwy5dh3vafwmDLuJs2fPZhk+w9XVlVdgdtaRegOLhg6P6urqqFBfX09J9FBdHHFxcWvXrsW3D6xP0BUVFWQ8cqa/v39CQkJJSYnRBW1razsiQdPGCTsuJBKJ6H8IQVsZ+fn5Xl5e/KW3tzc/VSiMBzriCw0NpUM/fPvA+gTNKCsri42NDQgIIBnu3r3buIKeNWsWP+fO6O/vz8jIGGoTuZF1/4cQtJVB4ahxppvmDPsV49sH1idoTlVVFe9CMJagd+7cmZiYKJyTlJT05JNPDrWJHh4eXV1dEPSEoqmpycXFRdi1RWWaw04VQtDA+gQteiKNDhCFewHBT7cYS9CdnZ3u7u7x8fE9PT1sjBRtBO9b0fbsnj17oqOjBwahMj/sHUrQtra2tHsbvFsdmBL6FdcY6kPQwR07VQhBAysTdE5ODomL/mq8GxkZSTsCG1XR29u7b9++9evXG1fQBK1v+fLl9FMgkUgef/zxoqIi3Ynwtm3b7O3tbWxs6CC3paVFt6BjYmJsBkEQWC6zZs2icNSYSb/odDgFQQPrELQ+F6rcGRxk/NBDD5EqnZycyNcGST2xkwAAgLn+POAjAAAACBoAAKyKW+03v7ne0n7m0o1TF2nqvtbY03gDggYAgHHQcUteySeb95Y8vzbL2S/1AU/5pDmi09HpvkVer1zaFNuUUUxLmYug+7u/bclTVe9OqdrxPv1tSCukOfheAQCWy3c3u2pipSfnr0ibMo/5N/eR355duuaTzds/2/vXusS/N+cmtxbJvzrx0fWk/TXv7v1020569/hjS7jBCzxXVu9OHoWpDSZoWnfVjn+kT12g8UuSPnXhpU37xvIbAgAA45Qy/8/HG/7MvJw90+/Cmk1fKj78tqX4++8/1mfq6ywld19c9yYtSy2kPjD3wpq3R9QHYhhB3zhVQQk//22hDarasevSpq38NyTD6RnKrPF9Wyg3Tl2kQyL6a6gGu6810tFVTexhapb+1ifn3qyswecMzIqGtJwMp6fJYKqg15qyDg18V6Gnl0UnSrGpHWotze6pqn+kdnV13bp1yxSCJjunT32KLEw67vw4U2Oz/vdqboHnf7Ffj+bsM/jWLRHSKH2DY38s5nc3v6ZGch9ZKtptlz0z4NNt7+FgC5gDn2zeTTItef6Vr2vzx+JljYlaO7t0DUV78atRzc3Nw2p6rIKm3eno9GdofR9v2KzjF4bepTrKn/g0X6nV86cDWJmgP9+fnuX8HHOx8kGv08/+4ZPN2+lIi3XYZTh533vLuyZW9n3/bXzsYLz4bG8ChSJF5hiz5qEmapnaLwz/y/Xr19vb23X4cKyC/nTb31nu3P9tue5tOvHrZVTzxIqttbW1+vx0AKsRdH/3t2eXRjL/Fnkt/+rER6JxT8eA9C6rVvJ8OFJpMC50VV+j3JlySmOomU+VG7dSnJemHCEf6nD0mARNOx47K6jds6E9/e/VXLnEM9V2fnHO8crKymF/OoB5CrrrfvQJklM+a2nxLGffpqxDw8ZJc27ysV/6q3/1PVe2f9GACAEmRhX0Bh3h9XWWGlXQlKMccfFLn7tCpVLpcPSYBN2cfYZ2pLxHF+m5Tcf/Q935mB7xdmFhIXO0Pns4MCtBt92PHuG+lZ0B178v75uGQnbW+7j3qzjYAqbk+/7bZOdPt+00qp3vdvxue0s+ZV5m+hEdjh6ToKt3p9BedHHdm3pu0KVN6n31oxffUCqVzNG0+2HfsyxBN96P7gU/369kufNIz7SQo1keXbTprzjYAiajMb2Qou7z9/aZQNANaR+qO/S2xOTm5paXl4smrJMMsd/u0nODqCbVTw58LTk5OSMj4/Tp0/S7gSTasgRddz86lvru5tdZzmrJ6tOzIdrXoR78M3XhubyTuvvpADAUZSvfoqgrWxlmAkF/tvevtK6U329UKBSUsF6+fJmCfDwz6IoNf2IZ9MGDB2UyGf1uUBKtvU3AnAV99X6GXarIa/moI5idM8x4MUJ3Px0AhqL6nSQKuU+27DCBoK/ExKgT1pc2paSkZGVlURLd3NxsSEGPtA8622Mx1ZeFvUWCZkk07Xja2wSsQ9C5j/yOlvrqxEdjGduvPgb8qU9WxlE4GpiA1pMXKOTOLX/dBII+H7KB1nVo438nJSUplcrTp09fv37dkIIeHMWxcESjOORT5skPSEnQOrYJWIGgu6qvs/HOYxxJysZHy6JidfTTAWAobpy6OHiDigUmGMWR5fIsrStpc/ShQ4dYLwelIIYU9B31OOj32DjoYffD7MfUQzhSA15LTU2VSqU6tglYgaC/PHyCFjn97B/GGMfssqvk1X+Sy+X5+fk4sQxMIOhUidHHQbMRE0YX9OCVhH7DXkmoWhOh3hr7hakJiRC0xVHktYYFEzn61Npo4URzRKdi39fVfXmbtxvkmqvkF8P5IRdOLANjC7pi7ZvsSkIj2ZkNlygftKJxBc3+JdbRIXovjptXco/NHrz3gsQzNfJtsjOlQujisCyGuuntsJP+I3x0h/JHi9bhxDIwmaBbi+SUWwxe0Wqse3FQBs1OsRhd0Hcd7fg02ydz/v2F0qVrChcuP7M0NNtjceqPnrybOw/amaDdDCcJkUGPKIM+/FIEYgaYUtAUe18qPlQ+6MXuZtecmzzGSG4rSTv/8gZqLX3qU9eT9vNz4KYQNNFSU1fwx7dSbedrplFT5qn7nQd7Nlj6TLsZsiHLYtz7oOVrt+OoC5hY0DT1tpV8vGEzu2dy9ky/i+vebDySONL7QVOyzK66onbKV73xTUOhcJCSiQTd1dVFrRcfL1Bu3S17VN2nQX9lYW/JD0i5mknKzM64UMVyBV1eXl5aWnrq1KkTJ04cO3bs6hB8fOykAUdxpL79Ls5bANMLmnv26l/eOTn/Rf6ElLxHF+l+ogol3ccfW5I25UlW/8Svl1ELGmY3qaBv3bpFB56UEdNqFL8LZ1cMHhxEOsjBe5Cdcam31QuaOOr6gqHGQafKDkPQYLwEzSdKqJuyDpGX6dAwy9lXx9kXSiyKvJZT9q0j4zapoFkSTceepN2sFeorBg8veZ1cnJCQ8N4gVHj//fcpiabcGTdLmgiCPrU2Wn3T24Wjv5KQllWH++LXMfIHmIOgtSeSb/cXBW0labQITV/X5n/TUKjnUaOpBU25cHt7O2m34FX1mfeM379JLqaU+cNBqEDbkZube/r0adxudCII+vL5CnbqeCz34pDbLZD/40MIGpinoMf4ECyTCpo5mpJi1Rt71A+yfXWXSqVKT0+XD0KFo0ePkppxw/4JImiidEe8+hH0M54Zxd3sslzVj19JXRmJoZkAgjYkl7btpxWfj/gbiZh2p8JBqHDu3DnKmqFmixa0/vfiYJx5QT0aP+tnI7sfdNbP1FfByv8jKFV2GEMzAQSt79YPNe5VOAmuUxh+2KwBnxUNzFDQ/d3fnlj4Ksuj9XyiSubPBx9d+Mii1A+lGJoJIOiR7aiGncb+rGhgzoImOltu5D+7jn3dBU8F63gm4ckFv78bGJQ737NzSkqKsH8DQzMBBI0MGhhM0GwIZvHWfamOdx/dnfbjhSefXnkp8u5TvU+/sFr5k9/cDRu7BfLlEaxng9mZDdPEzZIABG0W+zOwMkHfuTcEs6ywOOPFCPmMZ8UPp37qI1/8OhuzIbQz79zA7UYBBH1H/12ura2tsbGxrq5OdAAs/aXysfsZ6nQ/NUJNUYM4hWieUcuPdUYnaDYEk+JPpVJlZWXJ/vr35NBtyS+Gf7Ro3eGXIuRrt6e+/S7LmjUuOiVBU5kWwQ37AQQNQYNhGPUhkdDRlA6ThZOSkvj1pVIBfCZVoGpUGXYGEDQEDYZH/4fG6nB0eXl5fn6+UqlkmTKJ+JAAekkz6S2qQNWoMuwMIGgIGgxP4/2MdHF+uWllZeXp06cpO87IyCARKwTQS5qJi04BBA1Bg5HRdj+jaIFdbtrc3EzhSP5VqVT8aiZ+TRPNxEWnwPR0nKsa9c0JRjrVHTmoFvT/ewejOIDB6LqfUbfDNE2pMSmYcuRaAfSSZuKiU2B6vu+/rXzwN8Z72JVwKn59q3zKPOkHByBoYDBu3Q8+EGBlqIL+pHzQy9hP9b7dV6Fw9pP/Z7Duu4BB0AAAIDhGrL6e+sBcYz/V++TLb6jvBfZOHAQNAAAjoCb2sPqJmluN1dFR9Jr6jvny5RHD3qYRggYAAE0+2ay+U+4pPwM/1bvjcu7RhSvVuXPAa/w+M/Q3KyurvLxc+zaNEDQAAIhwdq80depCucSzZOmasT/Vu+mkPO+3a6g19XO01+3gdzLg/RuXL1/Wvk0jBA0AACJcv3793ImiIy+8rrbqpDlH/u2Zslc3jfSp3tePSotXbUp3Hrz/DLXj/Yr8Hx/qf58ZCBoAAET4591jDitkwRtlvwo8/MMn7j4T9pcBBc+tKgvb8mnMO7UfxLGnejfkJH/2QVxlzDulr285/tyqI78KTP3R3Ls3AnMNUN+jMSFxpPeZgaABAEAEkbvHxCckbdiZ4r9G5rFU/hNvXXe6t18o//fF8ufWpG76s/y9AyRiSpnJy/xWM3reZwaCBgCAYRytcfeYQ4cO3b3J19/ipbvfTdrydtLmaPVF2+/sk+79u/RAoujNv9iDs0d0nxmjCPr8y+qnep9duhmCBgBYgaM17h6jUCh4Uqxxqy9t2M2/qDItQguO6D4zhhf09/23eZ7f3/0tBA0AsHRHa9w9prCwkCSblZWlfasvbdjNv6gyLUILjug+M4YXtCpoKxf06WfDrlZdhqABANahaXb3GGbq8vJy7Vt9acNu/kWVuZf1v8+MgQXNep+VDz7dkFaY4fQMlYv+uAuCBgBYq6w1bvWlzVhu/mVIQX++X6l+HuiU+R3nqujlV2cvpdktoDknInarBrlw4QJurwMAAKYWdH1ybuoD6kF/Xx4+wX9hLh/IYGO887bsOXv2LAkaN5AEAACTCvpmZU361IUk4iv/fYDbmd3O/8TmPeoLz23nnzogJ0HjlvwAAGA6Qfc03jg63Y8sfGnTPjZH+LAVlUqVHRyp7vp40Ft1JJc/NgUfPQAAGFfQt3v7CjxD2ICN7/tvs/RZ+Ciss4NkLnhFfTH7L164VnWVORpJNAAAGFHQZOSS59W3nT7+2PLvbn59517nhvBBhdWDXLn06bG5f6Ca9Pfa1c+oAjo6AADAiIJmt0zNcn6+96uOO4KuZ25n9ijYpkHqP7t2ZLr6lk7HAzbU1V5DZzQAABhL0FfflqrP/j0w98api3fuPzGo/aBu9lZ1TrHCZp56cPSaKDzDGwAAjCJoPqiOChp2Zumz0M7s6aKsQpXsGBt4d/4viXA0AAAYWND/c+EqG1RXE3tYHzuzpXi1i3uT2L2rP0nNhaMBAMBggu6+1siu4b64brf+dtZw9JlXo6gFhb3X5bxiOBoAAAwg6O9ufn3i1yvZoLrbvX137h/yzLqedQuXO7pomXpw9NGHFtdUXMLgaAAAGKugy1f9max6cv4fmZ01hjyz9HnYdJg5+kbLV7nzXrk7qONe0o0kGgAARp9Bn395V0/jjTtiQ56ZZ/XprGDL1l/5rOCFjZ+WnBvRsgAAAEEPg+iQZ/2z4NFl3wAAAEGPQNCMUfQjC/uvGRA0AAAYTNCN9xiFW4UjQEbdCAAAQNDiguaMTqzc0WNsBwAAIOj7BC1k1FZljjZIUwAAAEHfFauQsWzELS3wxQAAwCR8BAAAAEEDAACAoAEAwPL5/4ewrxCdGBSXAAAAAElFTkSuQmCC\" />\n",
+    "version" : "v1",
+    "title" : "Barcodes"
+  },
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/barcode" : {
+      "post" : {
+        "description" : "Produce barcode, storing metadata in database\n",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "MessageID",
+          "in" : "header",
+          "description" : "Message ID\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "TraceabilityID",
+          "in" : "header",
+          "description" : "Traceablity ID\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "application/json",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AddBarcodeRq"
+          },
+          "x-examples" : {
+            "default" : "{\n\t\"barcodeData\": [\n\t\t{\n\t\t\t\"barcodeContent\": {\n\t\t\t\t\"barcodeId\": \"123123123\",\n\t\t\t\t\"sheetTypeCd\": \"CODE123\",\n\t\t\t\t\"document\": {\n\t\t\t\t\t\"documentClassCd\": \"CODE3333\",\n\t\t\t\t\t\"metadataDocument\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"listId\": \"123\",\n\t\t\t\t\t\t\t\"value\": [\n\t\t\t\t\t\t\t\t\"item1\",\n\t\t\t\t\t\t\t\t\"item2\"\n                        \t]\n                    \t}\n                \t]\n            \t}\n        \t}\n    \t},\n\t\t{\n\t\t\t\"barcodeValue\":{\n\t\t\t\t\"barcodeId\": \"123125555\",\n\t\t\t\t\"dataVal\": \"some data\"\n            }\n        }\n\t],\n\t\"options\": [\n\t\t{\n\t\t\t\"name\": \"numRows\",\n\t\t\t\"value\": \"25\"\n        },\n\t\t{\n\t\t\t\"name\": \"fontSize\",\n\t\t\t\"value\": \"12\"\n        }\n\t],\n\t\"generationUserId\": \"userId1234\",\n\t\"generationDttm\": \"2013-09-29T18:46:19-0700\",\n\t\"purgeDt\": \"2015-06-21\"\n}\n"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Create success\n",
+            "schema" : {
+              "$ref" : "#/definitions/AddBarcodeRs"
+            },
+            "examples" : {
+              "application/json" : {
+                "barcodeImage" : [ {
+                  "barcodeImageId" : "1231231231",
+                  "barcodeVal" : "my barcode value",
+                  "imageDataVal" : "dff33q4$#@f2w342"
+                }, {
+                  "barcodeImageId" : "1231231232",
+                  "barcodeVal" : "my barcode value 2",
+                  "imageDataVal" : "dff33q4$#@f2w3423333"
+                } ]
+              }
+            }
+          },
+          "400" : {
+            "description" : "400 -  Bad Request\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "400",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1090",
+                    "serverStatusCode" : "XYZABC",
+                    "severity" : "Error",
+                    "statusDesc" : "Invalid Value(s)"
+                  } ]
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "401 -  Unauthorized\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "401",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1740",
+                    "serverStatusCode" : "XYAZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Consumer is not authorized."
+                  } ]
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "404 -  Not Found\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "404",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "6160",
+                    "serverStatusCode" : "XYZB",
+                    "severity" : "Error",
+                    "statusDesc" : "Third party customer/vendor for the transaction was not found."
+                  } ]
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "405 -  Method Not Allowed\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "405",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "700",
+                    "serverStatusCode" : "AXYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Unsupported Function."
+                  } ]
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "409 -  Conflict\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "409",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1361",
+                    "serverStatusCode" : "WXYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Invalid reference"
+                  } ]
+                }
+              }
+            }
+          },
+          "412" : {
+            "description" : "412 -  Precondition Failed\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "412",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "750",
+                    "serverStatusCode" : "XYZXXX",
+                    "severity" : "Error",
+                    "statusDesc" : "Unsupported Function."
+                  } ]
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "429 -  Too Many Requests\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "429",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "2660",
+                    "serverStatusCode" : "XYZOPO",
+                    "severity" : "Error",
+                    "statusDesc" : "Too many requests to process."
+                  } ]
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "500 -  Internal Server Error\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "500",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "100",
+                    "serverStatusCode" : "XYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "System Error"
+                  } ]
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "503 -  Service Unavailable\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "503",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "300",
+                    "serverStatusCode" : "ABC",
+                    "severity" : "Error",
+                    "statusDesc" : "System Not Available"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oauth_2_0" : [ "bar.dis.bar.w" ]
+        } ]
+      }
+    },
+    "/barcode/{barcodeId}" : {
+      "get" : {
+        "description" : "Retrieve metadata for one barcode\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "barcodeId",
+          "in" : "path",
+          "description" : "Unique key identifies a barcode\n",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "MessageID",
+          "in" : "header",
+          "description" : "Message ID\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "TraceabilityID",
+          "in" : "header",
+          "description" : "Traceablity ID\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "readUserId",
+          "in" : "query",
+          "description" : "Warm body id requesting the barcode metadata\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "readTime",
+          "in" : "query",
+          "description" : "Current timestamp YYYY-MM-DDTHH:MM:SS-ZZ:ZZ\n",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "purgeDate",
+          "in" : "query",
+          "description" : "When the barcode can be deleted YYYY-MM-DD\n",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Retrieve success\n",
+            "schema" : {
+              "$ref" : "#/definitions/RetrieveBarcodeRs"
+            },
+            "examples" : {
+              "application/json" : {
+                "barcodeData" : [ {
+                  "barcodeContent" : {
+                    "barcodeId" : "123123123",
+                    "sheetTypeCd" : "CODE123",
+                    "document" : {
+                      "documentClassCd" : "CODE3333",
+                      "metadataDocument" : [ {
+                        "listId" : "123",
+                        "value" : [ "item1", "item2" ]
+                      } ]
+                    }
+                  }
+                }, {
+                  "barcodeValue" : {
+                    "barcodeId" : "123125555",
+                    "dataVal" : "some data"
+                  }
+                } ]
+              }
+            }
+          },
+          "400" : {
+            "description" : "400 -  Bad Request\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "400",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1090",
+                    "serverStatusCode" : "XYZABC",
+                    "severity" : "Error",
+                    "statusDesc" : "Invalid Value(s)"
+                  } ]
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "401 -  Unauthorized\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "401",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1740",
+                    "serverStatusCode" : "XYAZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Consumer is not authorized."
+                  } ]
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "404 -  Not Found\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "404",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "6160",
+                    "serverStatusCode" : "XYZB",
+                    "severity" : "Error",
+                    "statusDesc" : "Third party customer/vendor for the transaction was not found."
+                  } ]
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "405 -  Method Not Allowed\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "405",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "700",
+                    "serverStatusCode" : "AXYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Unsupported Function."
+                  } ]
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "409 -  Conflict\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "409",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "1361",
+                    "serverStatusCode" : "WXYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "Invalid reference"
+                  } ]
+                }
+              }
+            }
+          },
+          "412" : {
+            "description" : "412 -  Precondition Failed\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "412",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "750",
+                    "serverStatusCode" : "XYZXXX",
+                    "severity" : "Error",
+                    "statusDesc" : "Unsupported Function."
+                  } ]
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "429 -  Too Many Requests\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "429",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "2660",
+                    "serverStatusCode" : "XYZOPO",
+                    "severity" : "Error",
+                    "statusDesc" : "Too many requests to process."
+                  } ]
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "500 -  Internal Server Error\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "500",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "100",
+                    "serverStatusCode" : "XYZ",
+                    "severity" : "Error",
+                    "statusDesc" : "System Error"
+                  } ]
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "503 -  Service Unavailable\n",
+            "schema" : {
+              "$ref" : "#/definitions/Status"
+            },
+            "examples" : {
+              "application/json" : {
+                "status" : {
+                  "serverStatusCode" : "503",
+                  "severity" : "Error",
+                  "additionalStatus" : [ {
+                    "statusCode" : "300",
+                    "serverStatusCode" : "ABC",
+                    "severity" : "Error",
+                    "statusDesc" : "System Not Available"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oauth_2_0" : [ "bar.dis.bar.r" ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "oauth_2_0" : {
+      "description" : "The OAuth 2.0 authorization framework enables a third-party\napplication to obtain limited access to an HTTP service, either on\nbehalf of a resource owner by orchestrating an approval interaction\nbetween the resource owner and the HTTP service, or by allowing the\nthird-party application to obtain access on its own behalf.\n\nOther than the traditional client-server authentication model,\nthe client obtains an access token -- a string denoting a\nspecific scope, lifetime, and other access attributes.  Access tokens\nare issued to third-party clients by an authorization server with the\napproval of the resource owner.  The client uses the access token to\naccess the protected resources hosted by the resource server.\n",
+      "type" : "oauth2",
+      "authorizationUrl" : "https://todo",
+      "tokenUrl" : "https://todo",
+      "flow" : "accessCode",
+      "scopes" : {
+        "bar.dis.bar.r" : "Description not provided.",
+        "bar.dis.bar.w" : "Description not provided."
+      }
+    }
+  },
+  "definitions" : {
+    "AddBarcodeRq" : {
+      "type" : "object",
+      "required" : [ "generationDttm", "generationUserId" ],
+      "properties" : {
+        "barcodeData" : {
+          "type" : "array",
+          "description" : "Array of barcode information\n",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRq_barcodeData"
+          }
+        },
+        "options" : {
+          "type" : "array",
+          "description" : "Barcode image properties\n",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRq_options"
+          }
+        },
+        "generationUserId" : {
+          "type" : "string",
+          "description" : "Warm body id requesting the barcode\n"
+        },
+        "generationDttm" : {
+          "$ref" : "#/definitions/dateTime"
+        },
+        "purgeDt" : {
+          "$ref" : "#/definitions/date"
+        }
+      }
+    },
+    "AddBarcodeRs" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "$ref" : "#/definitions/AddBarcodeRs_status"
+        },
+        "barcodeImage" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRs_barcodeImage"
+          }
+        }
+      }
+    },
+    "RetrieveBarcodeRs" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "$ref" : "#/definitions/AddBarcodeRs_status"
+        },
+        "barcodeData" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRq_barcodeData"
+          }
+        }
+      }
+    },
+    "Status" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "$ref" : "#/definitions/Status_status"
+        }
+      },
+      "description" : "API Status.\nDefine the error reporting structure that may be returned by an API call.\n"
+    },
+    "date" : {
+      "type" : "string",
+      "description" : "The ·value space· of date consists of top-open intervals of exactly one day in length on the timelines of dateTime, beginning on the beginning moment of each day (in each timezone), i.e. '00:00:00', up to but not including '24:00:00' (which is identical with '00:00:00' of the next day). For nontimezoned values, the top-open intervals disjointly cover the nontimezoned timeline, one per day. For timezoned values, the intervals begin at every minute and therefore overlap.\n"
+    },
+    "dateTime" : {
+      "type" : "string",
+      "description" : "dateTime values may be viewed as objects with integer-valued year, month, day, hour and minute properties, a decimal-valued second property, and a boolean timezoned property. Each such object also has one decimal-valued method or computed property, timeOnTimeline, whose value is always a decimal number; the values are dimensioned in seconds, the integer 0 is 0001-01-01T00:00:00 and the value of timeOnTimeline for other dateTime values is computed using the Gregorian algorithm as modified for leap-seconds. The timeOnTimeline values form two related \"timelines\", one for timezoned values and one for non-timezoned values. Each timeline is a copy of the ·value space· of decimal, with integers given units of seconds.\n"
+    },
+    "AddBarcodeRq_barcodeValue" : {
+      "required" : [ "barcodeId", "dataVal" ],
+      "properties" : {
+        "barcodeId" : {
+          "type" : "string",
+          "description" : "Barcode Id.\n"
+        },
+        "dataVal" : {
+          "type" : "string",
+          "description" : "Simple Metadata.\n"
+        }
+      },
+      "description" : "Barcode simple structure to hold metadata.\n"
+    },
+    "AddBarcodeRq_barcodeContent_document" : {
+      "required" : [ "documentClassCd" ],
+      "properties" : {
+        "documentClassCd" : {
+          "type" : "string",
+          "description" : "Class of the document.\n"
+        },
+        "metadataDocument" : {
+          "type" : "array",
+          "description" : "Holder of the metadata.\n",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        }
+      },
+      "description" : "User defined complex structure to hold data.\n"
+    },
+    "AddBarcodeRq_barcodeContent" : {
+      "required" : [ "barcodeId", "sheetTypeCd" ],
+      "properties" : {
+        "barcodeId" : {
+          "type" : "string",
+          "description" : "Barcode Id.\n"
+        },
+        "sheetTypeCd" : {
+          "type" : "string",
+          "description" : "Sheet Type.\n"
+        },
+        "document" : {
+          "$ref" : "#/definitions/AddBarcodeRq_barcodeContent_document"
+        }
+      },
+      "description" : "Barcode complex structure to hold metadata.\n"
+    },
+    "AddBarcodeRq_barcodeData" : {
+      "properties" : {
+        "barcodeValue" : {
+          "$ref" : "#/definitions/AddBarcodeRq_barcodeValue"
+        },
+        "barcodeContent" : {
+          "$ref" : "#/definitions/AddBarcodeRq_barcodeContent"
+        }
+      }
+    },
+    "AddBarcodeRq_options" : {
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the barcode image (predefined).\n",
+          "enum" : [ "errorCorrectionLevel", "numRows", "numColumns", "widthX", "heightY", "resolutionDPI", "textPrint", "fontSize" ]
+        },
+        "value" : {
+          "type" : "string",
+          "description" : "Data of the image.\n"
+        }
+      },
+      "description" : "key value pairs\n"
+    },
+    "AddBarcodeRs_status_additionalStatus" : {
+      "required" : [ "severity", "statusCode" ],
+      "properties" : {
+        "statusCode" : {
+          "type" : "integer",
+          "description" : "Response Status Code.\nValid values depend on context. See specific API documentation site.\nBusiness logic may be written based on the values of this field.\n"
+        },
+        "serverStatusCode" : {
+          "type" : "string",
+          "description" : "Server Status Code.\nThe value placed here is used to allow the client to display a status code to the user, or log appropriately for troubleshooting purposes.\nNo business logic may be written based on the values of this field.\n",
+          "maxLength" : 100
+        },
+        "severity" : {
+          "type" : "string",
+          "description" : "API Status Severity Code.\nValid values:\nError – There was an error in the request severe enough that no response could be made. The requested transaction was not processed.\nWarning – There was a problem with the request, but a valid response is still present. The requested transaction was processed.\nInfo – Information Only. The requested transaction was processed.\n",
+          "enum" : [ "Info", "Warning", "Error" ]
+        },
+        "statusDesc" : {
+          "type" : "string",
+          "description" : "Status Description. Explanatory text associated with a status such as the response status code, the bank account status, stopped check status or other related object status.\n"
+        }
+      }
+    },
+    "AddBarcodeRs_status" : {
+      "required" : [ "serverStatusCode", "severity" ],
+      "properties" : {
+        "serverStatusCode" : {
+          "type" : "string",
+          "description" : "HTTP Server Status Code.\nThe value placed here is used to allow the client to display a status code to the user, or log appropriately for troubleshooting purposes.\nNo business logic may be written based on the values of this field.\n"
+        },
+        "severity" : {
+          "type" : "string",
+          "description" : "API Status Severity Code.\nValid values:\nError – There was an error in the request severe enough that no response could be made. The requested transaction was not processed.\nThe associated HTTP status code is one of Client error (4xx) or Server error (5xx).\nWarning – There was a problem with the request, but a valid response is still present. The requested transaction was processed.\nThe associated HTTP status code is one of Successful (2xx), except 200 (reserved for success, a case where an API Status is not returned).\n",
+          "enum" : [ "Warning", "Error" ]
+        },
+        "additionalStatus" : {
+          "type" : "array",
+          "description" : "API Additional Statuses.\nThis aggregate may appear once for each additional status that the service intends to provide.\nFor example, if both an account number and a date are invalid, an Additional Status' StatusCode\nmay return a general data validation error, while additional statuses may provide two detailed errors,\none for each edit.\n",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRs_status_additionalStatus"
+          }
+        }
+      },
+      "description" : "Status. Represents the business processing result.\n"
+    },
+    "AddBarcodeRs_barcodeImage" : {
+      "required" : [ "barcodeImageId", "barcodeVal", "imageDataVal" ],
+      "properties" : {
+        "barcodeImageId" : {
+          "type" : "string",
+          "description" : "Barcode image identifier\n"
+        },
+        "barcodeVal" : {
+          "type" : "string",
+          "description" : "Barcode value\n"
+        },
+        "imageDataVal" : {
+          "type" : "string",
+          "description" : "Base64 Barcode Image Data\n"
+        }
+      },
+      "description" : "key value pairs\n"
+    },
+    "Status_status" : {
+      "required" : [ "serverStatusCode", "severity" ],
+      "properties" : {
+        "serverStatusCode" : {
+          "type" : "string",
+          "description" : "HTTP Server Status Code.\nThe value placed here is used to allow the client to display a status code to the user, or log appropriately for troubleshooting purposes.\nNo business logic may be written based on the values of this field.\n"
+        },
+        "severity" : {
+          "type" : "string",
+          "description" : "API Status Severity Code.\nValid values:\nError – There was an error in the request severe enough that no response could be made. The requested transaction was not processed.\nThe associated HTTP status code is one of Client error (4xx) or Server error (5xx).\nWarning – There was a problem with the request, but a valid response is still present. The requested transaction was processed.\nThe associated HTTP status code is one of Successful (2xx), except 200 (reserved for success, a case where an API Status is not returned).\n",
+          "enum" : [ "Warning", "Error" ]
+        },
+        "additionalStatus" : {
+          "type" : "array",
+          "description" : "API Additional Statuses.\nThis aggregate may appear once for each additional status that the service intends to provide.\nFor example, if both an account number and a date are invalid, an Additional Status' StatusCode\nmay return a general data validation error, while additional statuses may provide two detailed errors,\none for each edit.\n",
+          "items" : {
+            "$ref" : "#/definitions/AddBarcodeRs_status_additionalStatus"
+          }
+        }
+      },
+      "description" : "Status.\nThe error reporting structure that may be returned by an API call.\n"
+    }
+  },
+  "parameters" : {
+    "MessageID" : {
+      "name" : "MessageID",
+      "in" : "header",
+      "description" : "Message ID\n",
+      "required" : false,
+      "type" : "string"
+    },
+    "TraceabilityID" : {
+      "name" : "TraceabilityID",
+      "in" : "header",
+      "description" : "Traceablity ID\n",
+      "required" : false,
+      "type" : "string"
+    }
+  },
+  "responses" : {
+    "400" : {
+      "description" : "400 -  Bad Request\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "400",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "1090",
+              "serverStatusCode" : "XYZABC",
+              "severity" : "Error",
+              "statusDesc" : "Invalid Value(s)"
+            } ]
+          }
+        }
+      }
+    },
+    "401" : {
+      "description" : "401 -  Unauthorized\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "401",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "1740",
+              "serverStatusCode" : "XYAZ",
+              "severity" : "Error",
+              "statusDesc" : "Consumer is not authorized."
+            } ]
+          }
+        }
+      }
+    },
+    "404" : {
+      "description" : "404 -  Not Found\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "404",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "6160",
+              "serverStatusCode" : "XYZB",
+              "severity" : "Error",
+              "statusDesc" : "Third party customer/vendor for the transaction was not found."
+            } ]
+          }
+        }
+      }
+    },
+    "405" : {
+      "description" : "405 -  Method Not Allowed\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "405",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "700",
+              "serverStatusCode" : "AXYZ",
+              "severity" : "Error",
+              "statusDesc" : "Unsupported Function."
+            } ]
+          }
+        }
+      }
+    },
+    "409" : {
+      "description" : "409 -  Conflict\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "409",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "1361",
+              "serverStatusCode" : "WXYZ",
+              "severity" : "Error",
+              "statusDesc" : "Invalid reference"
+            } ]
+          }
+        }
+      }
+    },
+    "412" : {
+      "description" : "412 -  Precondition Failed\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "412",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "750",
+              "serverStatusCode" : "XYZXXX",
+              "severity" : "Error",
+              "statusDesc" : "Unsupported Function."
+            } ]
+          }
+        }
+      }
+    },
+    "429" : {
+      "description" : "429 -  Too Many Requests\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "429",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "2660",
+              "serverStatusCode" : "XYZOPO",
+              "severity" : "Error",
+              "statusDesc" : "Too many requests to process."
+            } ]
+          }
+        }
+      }
+    },
+    "500" : {
+      "description" : "500 -  Internal Server Error\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "500",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "100",
+              "serverStatusCode" : "XYZ",
+              "severity" : "Error",
+              "statusDesc" : "System Error"
+            } ]
+          }
+        }
+      }
+    },
+    "503" : {
+      "description" : "503 -  Service Unavailable\n",
+      "schema" : {
+        "$ref" : "#/definitions/Status"
+      },
+      "examples" : {
+        "application/json" : {
+          "status" : {
+            "serverStatusCode" : "503",
+            "severity" : "Error",
+            "additionalStatus" : [ {
+              "statusCode" : "300",
+              "serverStatusCode" : "ABC",
+              "severity" : "Error",
+              "statusDesc" : "System Not Available"
+            } ]
+          }
+        }
+      }
+    }
+  }
+}
